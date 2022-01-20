@@ -29,5 +29,7 @@ namespace Clinic_Patient_Info_Management_System.Models
         {
             return new ApplicationDbContext();
         }
+
+        DbSet<Doctor> Doctor { get; set; }
     }
 }
