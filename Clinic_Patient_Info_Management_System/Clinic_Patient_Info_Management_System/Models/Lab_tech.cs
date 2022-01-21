@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-using System.ComponentModel.DataAnnotations;
 
 namespace Clinic_Patient_Info_Management_System.Models
 {
-    public class Doctor
+    public class Lab_tech
     {
         [Key]
         public int id { get; set; }
@@ -14,8 +14,7 @@ namespace Clinic_Patient_Info_Management_System.Models
         public string name { get; set; }
 
         public string phone { get; set; }
-        
-        public string email { get; set; }
 
+        public string email { get; set; }
     }
 }
