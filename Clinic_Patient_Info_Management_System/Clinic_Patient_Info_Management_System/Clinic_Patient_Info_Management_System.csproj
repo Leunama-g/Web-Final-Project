@@ -168,6 +168,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdministratorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -177,9 +178,30 @@
     <Compile Include="Migrations\202201202003215_first_migration.Designer.cs">
       <DependentUpon>202201202003215_first_migration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202201211346199_more domain models added.cs" />
+    <Compile Include="Migrations\202201211346199_more domain models added.Designer.cs">
+      <DependentUpon>202201211346199_more domain models added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202201211348178_added user ID attribute to domain models.cs" />
+    <Compile Include="Migrations\202201211348178_added user ID attribute to domain models.Designer.cs">
+      <DependentUpon>202201211348178_added user ID attribute to domain models.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202201211500054_added occupation table.cs" />
+    <Compile Include="Migrations\202201211500054_added occupation table.Designer.cs">
+      <DependentUpon>202201211500054_added occupation table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202201211508303_bugfix.cs" />
+    <Compile Include="Migrations\202201211508303_bugfix.Designer.cs">
+      <DependentUpon>202201211508303_bugfix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202201211522211_specialtyTable.cs" />
+    <Compile Include="Migrations\202201211522211_specialtyTable.Designer.cs">
+      <DependentUpon>202201211522211_specialtyTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Doctor.cs" />
+    <Compile Include="Models\AdministratorViewModel.cs" />
+    <Compile Include="Models\EmployeeDomainModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -241,6 +263,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Administrator\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -261,6 +284,21 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202201202003215_first_migration.resx">
       <DependentUpon>202201202003215_first_migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201211346199_more domain models added.resx">
+      <DependentUpon>202201211346199_more domain models added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201211348178_added user ID attribute to domain models.resx">
+      <DependentUpon>202201211348178_added user ID attribute to domain models.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201211500054_added occupation table.resx">
+      <DependentUpon>202201211500054_added occupation table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201211508303_bugfix.resx">
+      <DependentUpon>202201211508303_bugfix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201211522211_specialtyTable.resx">
+      <DependentUpon>202201211522211_specialtyTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

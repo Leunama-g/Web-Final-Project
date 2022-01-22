@@ -17,6 +17,7 @@ namespace Clinic_Patient_Info_Management_System.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        public ApplicationDbContext context = new ApplicationDbContext();
 
         public AccountController()
         {

@@ -30,6 +30,10 @@ namespace Clinic_Patient_Info_Management_System.Models
             return new ApplicationDbContext();
         }
 
-        DbSet<Doctor> Doctor { get; set; }
+        public virtual DbSet<Doctor> Doctor { get; set; }
+        public virtual DbSet<Receptionist> Receptionist { get; set; }
+        public virtual DbSet<LabTech> LabTech { get; set; }
+        public virtual DbSet<Admin> Admin { get; set; }
+        public virtual DbSet<Specialties> Specialties { get; set; }
     }
 }
