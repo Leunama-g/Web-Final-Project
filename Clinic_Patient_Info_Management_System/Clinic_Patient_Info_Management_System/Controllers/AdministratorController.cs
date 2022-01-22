@@ -80,10 +80,54 @@ namespace Clinic_Patient_Info_Management_System.Controllers
 
         public ActionResult Index()
         {
+            var buffer = context.Employees.ToList();
+            List<AdminIndexViewModel> model = new List<AdminIndexViewModel>();
 
-            return View();
+            foreach (var item in buffer)
+            {
+                model.Add(new AdminIndexViewModel { UserID = item.UserID, FirstName = item.FirstName, LastName = item.LastName, Type = item.Type });
+            }
+            return View(model);
         }
         
+        public ActionResult Edit(string UserID) 
+        {
+            Employee user = context.Employees.Where(emp => emp.UserID == UserID).FirstOrDefault();
+            EditEmpViewModel model = new EditEmpViewModel();
+
+            model.AccountType = user.Type;
+            model.FirstName = user.FirstName;
+            model.LastName = user.LastName;
+            model.Email = user.Email;
+            model.Birthdate = user.Birthdate.Day;
+            model.BirthMonth = user.Birthdate.Month;
+            model.BirthYear = user.Birthdate.Year;
+            model.Adderess = user.Adderess;
+            model.PhoneNumber = user.PhoneNumber;
+            model.Specialty = user.Specialty;
+            
+            ViewBag.specialties = specialtyList();
+            ViewBag.roles = roleList();
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(EditEmpViewModel model)
+        {
+            Employee NewUser = context.Employees.Where(emp => emp.Id == model.Id).FirstOrDefault();
+            NewUser.FirstName = model.FirstName;
+            NewUser.LastName = model.LastName;
+            NewUser.Birthdate = new DateTime(model.BirthYear, model.BirthMonth, model.Birthdate);
+            NewUser.Email = model.Email;
+            NewUser.Adderess = model.Adderess;
+            NewUser.PhoneNumber = model.PhoneNumber;
+            NewUser.Type = model.AccountType;
+            NewUser.Specialty = model.Specialty;
+            context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         public ActionResult Register()
         {
 

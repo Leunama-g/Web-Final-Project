@@ -274,6 +274,8 @@
     <Content Include="Views\Administrator\Register.cshtml" />
     <Content Include="Views\Home\_Layout.cshtml" />
     <Content Include="Views\Home\_ViewStart.cshtml" />
+    <Content Include="Views\Administrator\Index.cshtml" />
+    <Content Include="Views\Administrator\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
