@@ -198,6 +198,14 @@
     <Compile Include="Migrations\202201211522211_specialtyTable.Designer.cs">
       <DependentUpon>202201211522211_specialtyTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202201221715158_single Employee table.cs" />
+    <Compile Include="Migrations\202201221715158_single Employee table.Designer.cs">
+      <DependentUpon>202201221715158_single Employee table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202201221719464_single Employee table with type attribute.cs" />
+    <Compile Include="Migrations\202201221719464_single Employee table with type attribute.Designer.cs">
+      <DependentUpon>202201221719464_single Employee table with type attribute.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdministratorViewModel.cs" />
@@ -264,6 +272,8 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Administrator\Register.cshtml" />
+    <Content Include="Views\Home\_Layout.cshtml" />
+    <Content Include="Views\Home\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -299,6 +309,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202201211522211_specialtyTable.resx">
       <DependentUpon>202201211522211_specialtyTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201221715158_single Employee table.resx">
+      <DependentUpon>202201221715158_single Employee table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201221719464_single Employee table with type attribute.resx">
+      <DependentUpon>202201221719464_single Employee table with type attribute.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

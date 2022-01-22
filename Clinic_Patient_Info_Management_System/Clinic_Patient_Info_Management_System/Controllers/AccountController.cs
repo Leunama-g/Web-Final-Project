@@ -76,15 +76,24 @@ namespace Clinic_Patient_Info_Management_System.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, false, shouldLockout: false);
+            Employee user = context.Employees.Where(person => person.Email == model.Email).FirstOrDefault();
             switch (result)
             {
                 case SignInStatus.Success:
+                    if(user.Type == "Admin")                   
+                        return RedirectToAction("Register", "Administrator");
+                    else if (user.Type == "Doctor")
+                        return RedirectToAction("Index", "Employee");
+                    else  if (user.Type == "LabTech")
+                        return RedirectToAction("Index", "Employee");
+                    else if (user.Type == "Receptionist")
+                        return RedirectToAction("Index", "Employee");
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = false });
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");

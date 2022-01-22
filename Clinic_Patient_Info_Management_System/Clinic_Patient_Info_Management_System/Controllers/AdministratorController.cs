@@ -12,7 +12,6 @@ using Microsoft.Owin.Security;
 
 namespace Clinic_Patient_Info_Management_System.Controllers
 {
-    [Authorize(Roles = "Admin")]
     public class AdministratorController : Controller
     {
         public ApplicationDbContext context = new ApplicationDbContext();
@@ -79,7 +78,12 @@ namespace Clinic_Patient_Info_Management_System.Controllers
             return sps;
         }
 
-        // GET: Administrator
+        public ActionResult Index()
+        {
+
+            return View();
+        }
+        
         public ActionResult Register()
         {
 
@@ -101,57 +105,17 @@ namespace Clinic_Patient_Info_Management_System.Controllers
                 if (result.Succeeded)
                 {
                     UserManager.AddToRole(user.Id, model.AccountType);
-                    if (model.AccountType == "Admin")
-                    {
-                        Admin NewUser = new Admin();
-                        NewUser.UserID = user.Id;
-                        NewUser.FirstName = model.FirstName;
-                        NewUser.LastName = model.LastName;
-                        NewUser.Birthdate = new DateTime(model.BirthYear, model.BirthMonth, model.Birthdate);
-                        NewUser.Email = model.Email;
-                        NewUser.Adderess = model.Adderess;
-                        NewUser.PhoneNumber = model.PhoneNumber;
-                        context.Admin.Add(NewUser);
-                    }
-                    else if (model.AccountType == "Doctor")
-                    {
-                        Doctor NewUser = new Doctor();
-                        NewUser.UserID = user.Id;
-                        NewUser.FirstName = model.FirstName;
-                        NewUser.LastName = model.LastName;
-                        NewUser.Birthdate = new DateTime(model.BirthYear, model.BirthMonth, model.Birthdate);
-                        NewUser.Email = model.Email;
-                        NewUser.Adderess = model.Adderess;
-                        NewUser.PhoneNumber = model.PhoneNumber;
-                        NewUser.Specialty = model.Specialty;
-                        context.Doctor.Add(NewUser);
-                    }
-                    else if (model.AccountType == "LabTech")
-                    {
-                        LabTech NewUser = new LabTech();
-                        NewUser.UserID = user.Id;
-                        NewUser.FirstName = model.FirstName;
-                        NewUser.LastName = model.LastName;
-                        NewUser.Birthdate = new DateTime(model.BirthYear, model.BirthMonth, model.Birthdate);
-                        NewUser.Email = model.Email;
-                        NewUser.Adderess = model.Adderess;
-                        NewUser.PhoneNumber = model.PhoneNumber;
-                        context.LabTech.Add(NewUser);
-                    }
-                    else if (model.AccountType == "Receptionist")
-                    {
-                        Receptionist NewUser = new Receptionist();
-                        NewUser.UserID = user.Id;
-                        NewUser.FirstName = model.FirstName;
-                        NewUser.LastName = model.LastName;
-                        NewUser.Birthdate = new DateTime(model.BirthYear, model.BirthMonth, model.Birthdate);
-                        NewUser.Email = model.Email;
-                        NewUser.Adderess = model.Adderess;
-                        NewUser.PhoneNumber = model.PhoneNumber;
-                        context.Receptionist.Add(NewUser);
-
-                    }
-
+                    Employee NewUser = new Employee();
+                    NewUser.UserID = user.Id;
+                    NewUser.FirstName = model.FirstName;
+                    NewUser.LastName = model.LastName;
+                    NewUser.Birthdate = new DateTime(model.BirthYear, model.BirthMonth, model.Birthdate);
+                    NewUser.Email = model.Email;
+                    NewUser.Adderess = model.Adderess;
+                    NewUser.PhoneNumber = model.PhoneNumber;
+                    NewUser.Type = model.AccountType;
+                    NewUser.Specialty = model.Specialty;
+                    context.Employees.Add(NewUser);
                     context.SaveChanges();
                     return RedirectToAction("Index", "Home");
                 }
