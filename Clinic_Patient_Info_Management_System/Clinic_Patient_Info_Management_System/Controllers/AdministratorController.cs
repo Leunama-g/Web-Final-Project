@@ -105,7 +105,7 @@ namespace Clinic_Patient_Info_Management_System.Controllers
             model.Adderess = user.Adderess;
             model.PhoneNumber = user.PhoneNumber;
             model.Specialty = user.Specialty;
-            
+            model.Id = user.Id;
             ViewBag.specialties = specialtyList();
             ViewBag.roles = roleList();
             return View(model);
