@@ -1,4 +1,5 @@
 ﻿using Clinic_Patient_Info_Management_System.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,10 @@ namespace Clinic_Patient_Info_Management_System.Controllers
         }
         // GET: Doctor
         public ActionResult Index()
-        {
+        {  
+            int userId = User.Identity.GetUserId<int>();
+            var specialties = context.Doctor.Where(doctor => doctor.Id == userId).FirstOrDefault();
+
             ReceptionistViewModel queueData = new ReceptionistViewModel();
             var waitingPatients = context.Visitations.Where(data => (data.Status == "waiting") || (data.Status == "in progress"));
 
@@ -41,7 +45,7 @@ namespace Clinic_Patient_Info_Management_System.Controllers
             foreach (var item in waitingPatients)
             {
                 visitor = context.Patients.Where(data => data.Id == item.PatientId).FirstOrDefault();
-                if (CalculateAge(visitor.BirthDate) < 18)
+                if (CalculateAge(visitor.BirthDate) < 18 && specialties.ToString()=="Pediatrician")
                 {
                     queueData.ForPediatrician.Add(new QueueViewModel
                     {
