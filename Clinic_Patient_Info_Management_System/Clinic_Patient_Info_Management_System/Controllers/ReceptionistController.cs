@@ -75,19 +75,102 @@ namespace Clinic_Patient_Info_Management_System.Controllers
 
         public ActionResult Search()
         {
-
+            List<SelectListItem> data = new List<SelectListItem>
+            {
+                new SelectListItem
+                {
+                    Text = "First Name",
+                    Value = "First Name"
+                },
+                new SelectListItem
+                {
+                    Text = "Last Name",
+                    Value = "Last Name"
+                },
+                new SelectListItem
+                {
+                    Text = "Phone Number",
+                    Value = "Phone Number"
+                }
+            };
+            ViewBag.list = data;
             return View();
         }
 
-        public ActionResult create()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Result(SearchViewModel model)
+        {
+
+            List<SearchResultViewModel> result = new List<SearchResultViewModel>(); 
+
+            if (model.type == "First Name")
+            {
+                var visitorResult = context.Patients.Where(data => data.FirstName.ToLower() == model.key.ToLower());
+                foreach(var item in visitorResult)
+                {
+                    result.Add(new SearchResultViewModel
+                    {
+                        FirstName = item.FirstName,
+                        LastName = item.LastName,
+                        PhoneNumber = item.PhoneNumber
+                    });
+                }
+            }
+            else if (model.type == "First Name")
+            {
+                var visitorResult = context.Patients.Where(data => data.LastName.ToLower() == model.key.ToLower());
+                foreach (var item in visitorResult)
+                {
+                    result.Add(new SearchResultViewModel
+                    {
+                        FirstName = item.FirstName,
+                        LastName = item.LastName,
+                        PhoneNumber = item.PhoneNumber
+                    });
+                }
+            }
+            else if (model.type == "First Name")
+            {
+                var visitorResult = context.Patients.Where(data => data.PhoneNumber.ToLower() == model.key.ToLower()).FirstOrDefault();
+                result.Add(new SearchResultViewModel
+                {
+                    FirstName = visitorResult.FirstName,
+                    LastName = visitorResult.LastName,
+                    PhoneNumber = visitorResult.PhoneNumber
+                });
+            }
+
+            return View(result);
+        }
+
+        public ActionResult CreatePatient()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Create(Patient patient)
+        public ActionResult CreatePatient(PatientViewModel patient)
         {
-            return RedirectToAction("index");
+            Patient data = new Patient();
+
+            data.FirstName = patient.FirstName;
+            data.LastName = patient.LastName;
+            data.PhoneNumber = patient.PhoneNumber;
+            data.Email = patient.Email;
+            data.Adderess = patient.Adderess;
+            data.BirthDate = new DateTime(patient.BirthYear, patient.BirthMonth, patient.BirthDay);
+
+            context.Patients.Add(data);
+
+            context.SaveChanges();
+
+            return RedirectToAction("Visitation", routeValues: new { Phone = patient.PhoneNumber });
+        }
+
+        public ActionResult Visitation(string Phone)
+        {
+            return View();
         }
 
         public ActionResult Sendin()
@@ -97,9 +180,6 @@ namespace Clinic_Patient_Info_Management_System.Controllers
 
         
 
-        public ActionResult Visitation(string search ="")
-        {
-            return View();
-        }
+        
     }
 }

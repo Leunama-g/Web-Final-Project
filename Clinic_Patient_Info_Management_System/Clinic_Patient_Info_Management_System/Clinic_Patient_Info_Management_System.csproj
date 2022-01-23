@@ -291,6 +291,9 @@
     <Content Include="Views\Receptionist\Visitation.cshtml" />
     <Content Include="Views\Receptionist\Index.cshtml" />
     <Content Include="Views\Receptionist\QueueTable.cshtml" />
+    <Content Include="Views\Receptionist\Search.cshtml" />
+    <Content Include="Views\Receptionist\Result.cshtml" />
+    <Content Include="Views\Receptionist\CreatePatient.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,33 @@
+﻿@model List<Clinic_Patient_Info_Management_System.Models.SearchResultViewModel>
+
+@{
+    ViewBag.Title = "Result";
+}
+
+<h2>Result</h2>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.PhoneNumber</td>
+                <td>
+                    @Html.ActionLink("Create Visitor", "Visitation", "Receptionist", routeValues: new { Phone = item.PhoneNumber }, htmlAttributes: new { id = "loginLink" })
+                </td>
+            </tr>
+        }
+
+
+    </tbody>
+</table>
