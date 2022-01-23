@@ -36,5 +36,7 @@ namespace Clinic_Patient_Info_Management_System.Models
         public virtual DbSet<Admin> Admin { get; set; }
         public virtual DbSet<Specialties> Specialties { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<Patient> Patients { get; set; }
+        public virtual DbSet<Visitation> Visitations { get; set; }
     }
 }

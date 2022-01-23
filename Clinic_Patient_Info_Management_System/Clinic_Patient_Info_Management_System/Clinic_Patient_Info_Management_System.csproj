@@ -207,12 +207,18 @@
     <Compile Include="Migrations\202201221719464_single Employee table with type attribute.Designer.cs">
       <DependentUpon>202201221719464_single Employee table with type attribute.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202201230947388_patient and visitation table.cs" />
+    <Compile Include="Migrations\202201230947388_patient and visitation table.Designer.cs">
+      <DependentUpon>202201230947388_patient and visitation table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdministratorViewModel.cs" />
     <Compile Include="Models\EmployeeDomainModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PatientDomainModel.cs" />
+    <Compile Include="Models\ReceptionistViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -319,6 +325,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202201221719464_single Employee table with type attribute.resx">
       <DependentUpon>202201221719464_single Employee table with type attribute.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201230947388_patient and visitation table.resx">
+      <DependentUpon>202201230947388_patient and visitation table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
