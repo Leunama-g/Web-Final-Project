@@ -93,7 +93,6 @@ namespace Clinic_Patient_Info_Management_System.Models
 
     public class VisitorViewModel
     {
-        public int Id { get; set; }
 
         public int PatientId { get; set; }
 

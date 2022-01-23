@@ -41,7 +41,7 @@ namespace Clinic_Patient_Info_Management_System.Controllers
 
             foreach(var item in waitingPatients)
             {
-                visitor = context.Patients.Where(data => data.Id == item.PatientId).FirstOrDefault();
+                visitor = context.Patients.Where(pa => pa.Id == item.PatientId).FirstOrDefault();
                 if(CalculateAge(visitor.BirthDate) < 18)
                 {
                     queueData.ForPediatrician.Add(new QueueViewModel
@@ -68,9 +68,14 @@ namespace Clinic_Patient_Info_Management_System.Controllers
                         Doctor = item.DoctorName
                     });
                 }
-            }
-
+            }            
             return View(queueData);
+        }
+
+        public ActionResult Home()
+        {
+
+            return View("Index");
         }
 
         public ActionResult Search()
@@ -170,12 +175,48 @@ namespace Clinic_Patient_Info_Management_System.Controllers
 
         public ActionResult Visitation(string Phone)
         {
-            return View();
+            Patient visior = context.Patients.Where(user => user.PhoneNumber == Phone).FirstOrDefault();
+            VisitorViewModel model = new VisitorViewModel();
+
+            model.PatientId = visior.Id;
+            model.FirstName = visior.FirstName;
+            model.LastName = visior.LastName;
+            model.VisitDate = DateTime.Now;
+
+            List<SelectListItem> data = new List<SelectListItem>
+            {
+                new SelectListItem
+                {
+                    Text = "Urgent",
+                    Value = "a"
+                },
+                new SelectListItem
+                {
+                    Text = "Normal",
+                    Value = "b"
+                },               
+            };
+
+            ViewBag.piror = data;
+
+            return View(model);
         }
 
-        public ActionResult Sendin()
+        [HttpPost]
+        public ActionResult Visitation(VisitorViewModel model)
         {
-            return View();
+            Visitation data = new Visitation();
+
+            data.PatientId = model.PatientId;
+            data.Medicine = model.Medicine;
+            data.Priority = model.Priority;
+            data.ReasonForVisit = model.ReasonForVisit;
+            data.VisitDate = model.VisitDate;
+            data.Status = "waiting";
+
+            context.Visitations.Add(data);
+            context.SaveChanges();
+            return RedirectToAction("index");
         }
 
         
