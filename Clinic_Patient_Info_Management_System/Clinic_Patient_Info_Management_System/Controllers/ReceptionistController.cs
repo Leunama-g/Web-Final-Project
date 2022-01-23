@@ -20,7 +20,7 @@ namespace Clinic_Patient_Info_Management_System.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Create(Receptionist receptionist)
+        public ActionResult Create(Patient patient)
         {
             return RedirectToAction("index");
         }
@@ -32,6 +32,9 @@ namespace Clinic_Patient_Info_Management_System.Controllers
         {
             return View();
         }
-
+        public ActionResult Visitation(string search ="")
+        {
+            return View();
+        }
     }
 }
