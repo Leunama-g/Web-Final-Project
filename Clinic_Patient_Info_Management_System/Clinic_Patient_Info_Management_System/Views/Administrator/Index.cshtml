@@ -4,7 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Employee Accounts</h2>
+
+@Html.ActionLink("Register", "Register", "Administrator", routeValues: null, htmlAttributes: new { id = "loginLink" })
+
 
 <table class="table table-hover">
     <thead>
@@ -25,11 +28,11 @@
                 <td>@item.LastName</td>
                 <td>@item.Type</td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", "Administrator", routeValues: new { UserID = item.UserID}, htmlAttributes: new { id = "loginLink" })
+                    @Html.ActionLink("Edit", "Edit", "Administrator", routeValues: new { UserID = item.UserID }, htmlAttributes: new { id = "loginLink" })
                 </td>
             </tr>
         }
 
-        
+
     </tbody>
 </table>

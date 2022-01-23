@@ -211,6 +211,10 @@
     <Compile Include="Migrations\202201230947388_patient and visitation table.Designer.cs">
       <DependentUpon>202201230947388_patient and visitation table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202201231353116_string to int.cs" />
+    <Compile Include="Migrations\202201231353116_string to int.Designer.cs">
+      <DependentUpon>202201231353116_string to int.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdministratorViewModel.cs" />
@@ -285,6 +289,8 @@
     <Content Include="Views\Administrator\Edit.cshtml" />
     <Content Include="Views\Receptionist\create.cshtml" />
     <Content Include="Views\Receptionist\Visitation.cshtml" />
+    <Content Include="Views\Receptionist\Index.cshtml" />
+    <Content Include="Views\Receptionist\QueueTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -329,6 +335,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202201230947388_patient and visitation table.resx">
       <DependentUpon>202201230947388_patient and visitation table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201231353116_string to int.resx">
+      <DependentUpon>202201231353116_string to int.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

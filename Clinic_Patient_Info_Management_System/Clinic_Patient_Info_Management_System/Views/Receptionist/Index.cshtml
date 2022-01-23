@@ -1,0 +1,75 @@
+﻿@model Clinic_Patient_Info_Management_System.Models.ReceptionistViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h3>
+    @Html.ActionLink("New Visitor", "Search", "Administrator", routeValues: null, htmlAttributes: new { id = "loginLink" })
+</h3>
+<hr />
+<h2>Waiting Queues to see a Pediatrician</h2>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Patient ID</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Status</th>
+            <th scope="col">Doctor</th>
+
+            <th scope="col">Priority</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ForPediatrician)
+        {
+            <tr>
+                <th scope="row">@item.Id</th>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.PhoneNumber</td>
+                <td>@item.Status</td>
+                <td>@item.Doctor</td>
+                <td>@item.Priority</td>
+            </tr>
+        }
+
+
+    </tbody>
+</table>
+<hr />
+<h2>Waiting Queues to see a Geriatrician</h2>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Patient ID</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Status</th>
+            <th scope="col">Doctor</th>
+
+            <th scope="col">Priority</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ForGeriatricians)
+        {
+            <tr>
+                <th scope="row">@item.Id</th>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.PhoneNumber</td>
+                <td>@item.Status</td>
+                <td>@item.Doctor</td>
+                <td>@item.Priority</td>
+            </tr>
+        }
+
+
+    </tbody>
+</table>

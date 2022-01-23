@@ -30,7 +30,7 @@ namespace Clinic_Patient_Info_Management_System.Models
         [Key]
         public int Id { get; set; }
 
-        public string PatientId { get; set; }
+        public int PatientId { get; set; }
 
         public string ReasonForVisit { get; set; }
 
@@ -40,6 +40,9 @@ namespace Clinic_Patient_Info_Management_System.Models
 
         public string Status { get; set; }
 
+
+        //value a == urgent
+        //value b == normal
         public string Priority { get; set; }
 
         public string DoctorName { get; set; }
