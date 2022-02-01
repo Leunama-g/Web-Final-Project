@@ -82,13 +82,11 @@ namespace Clinic_Patient_Info_Management_System.Controllers
             {
                 case SignInStatus.Success:
                     if(user.Type == "Admin")                   
-                        return RedirectToAction("Register", "Administrator");
+                        return RedirectToAction("Index", "Administrator");
                     else if (user.Type == "Doctor")
-                        return RedirectToAction("Index", "Employee");
-                    else  if (user.Type == "LabTech")
-                        return RedirectToAction("Index", "Employee");
+                        return RedirectToAction("Index", "Doctor");                    
                     else if (user.Type == "Receptionist")
-                        return RedirectToAction("Index", "Employee");
+                        return RedirectToAction("Index", "Receptionist");
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
