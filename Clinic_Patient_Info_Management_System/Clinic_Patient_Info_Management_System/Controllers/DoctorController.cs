@@ -87,19 +87,58 @@ namespace Clinic_Patient_Info_Management_System.Controllers
         public ActionResult ViewPatient(int id)
         {
             var patient = context.Patients.Where(temp => temp.Id == id).FirstOrDefault();
-            var visit = context.Visitations.Where(data => data.PatientId == id);
+            var visit = context.Visitations.Where(data => data.PatientId == id).OrderBy(data => data.VisitDate);
 
             DoctorViewModel model = new DoctorViewModel();
 
-            model.Patients = patient;
-            model.Visitations = visit;
+            model.FirstName = patient.FirstName;
+            model.LastName = patient.LastName;
+
+            bool ctr = false;
+            foreach(var items in visit)
+            {
+                if (!ctr)
+                {
+                    model.current.Id = items.Id;
+                    model.current.Medicine = items.Medicine;
+                    model.current.Perscription = items.Perscription;
+                    model.current.ReasonForVisit = items.ReasonForVisit;
+                    model.current.VisitDate = items.VisitDate;
+                    model.current.Diagnosis = items.Diagnosis;
+                    ctr = true;
+                }
+
+                else
+                {
+                    model.past.Add(new Records
+                    {
+                        Id = items.Id,
+                        Medicine = items.Medicine,
+                        Perscription = items.Perscription,
+                        ReasonForVisit = items.ReasonForVisit,
+                        VisitDate = items.VisitDate,
+                        Diagnosis = items.Diagnosis,
+                    });
+                }
+            }
+
 
             return View(model);
         }
-        public ActionResult viewVisitation(int id)
+
+        [HttpPost]
+        public ActionResult ViewPatient(Records current)
         {
-            var visitation = context.Visitations.Where(temp => temp.Id == id).FirstOrDefault();
-            return View(visitation);
+            var visit = context.Visitations.Where(data => data.Id == current.Id).FirstOrDefault();
+
+            visit.Perscription = current.Perscription;
+            visit.Diagnosis = current.Diagnosis;
+            visit.Status = "Finished";
+            context.SaveChanges();
+
+            return RedirectToAction("index");
         }
+
+
     }
 }

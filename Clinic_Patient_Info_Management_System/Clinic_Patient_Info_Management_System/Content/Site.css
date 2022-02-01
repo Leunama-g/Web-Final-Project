@@ -1,8 +1,97 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿
+@import url('https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap');
+.back {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    background-image: url('../Assets/Background_Image_main.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
+ul {
+    list-style-type: none;
+}
+
+.vertical-center {
+    min-height: 50%; /* Fallback for browsers do NOT support vh unit */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-style {
+    text-align: center;
+    margin: 30px;
+}
+
+form {
+    width: 80%;
+}
+
+.form-control {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login {
+    width: 30rem;
+    height: 60%;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);
+    border-radius: 5px;
+    position: relative;
+    z-index: 1;
+    background: inherit;
+    overflow: hidden;
+}
+
+.title {
+    color: black;
+    text-align: start;
+    margin: 10px;
+}
+
+p {
+    font-family: 'Supermercado One';
+    font-size: 30px;
+    color: black;
+}
+
+.colorChange {
+    background-color: rgb(199, 198, 196) !important;
+}
+
+.login:before {
+    content: "";
+    position: absolute;
+    background: inherit;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
+    filter: blur(10px);
+    margin: -20px;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 15%;
+    width: 100%;
+}
+
+#loginForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;

@@ -1,21 +1,30 @@
 ﻿@using Microsoft.AspNet.Identity
+
 @if (Request.IsAuthenticated)
 {
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "d-flex" }))
     {
     @Html.AntiForgeryToken()
-
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+<div class="row">
+    <div class="col-8">
+        @Html.ActionLink("Hello, " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "text-decoration-none text-light" })
+    </div>
+    <div class="col">
+        <a href="javascript:document.getElementById('logoutForm').submit()" role="button" class="btn btn-primary">Log off</a>
+    </div>
+</div>
+    
     }
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
+    <div class="row">
+        <div class="col-8">
+
+        </div>
+        <div class="col-4">
+            @Html.ActionLink("Log in", "index", "Home", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn btn-primary" })
+
+        </div>
+    </div>
 }
