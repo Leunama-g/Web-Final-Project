@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace Clinic_Patient_Info_Management_System.Controllers
 {
+    [Authorize(Roles = "Receptionist")]
     public class ReceptionistController : Controller
     {
         ApplicationDbContext context;

@@ -27,6 +27,8 @@ namespace Clinic_Patient_Info_Management_System.Models
 
         public string LastName { get; set; }
 
+        public int Age { get; set; }
+
         public Records current { get; set; }
 
         public List<Records> past { get; set; }

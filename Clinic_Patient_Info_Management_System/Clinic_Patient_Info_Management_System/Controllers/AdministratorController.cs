@@ -12,6 +12,7 @@ using Microsoft.Owin.Security;
 
 namespace Clinic_Patient_Info_Management_System.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdministratorController : Controller
     {
         public ApplicationDbContext context = new ApplicationDbContext();

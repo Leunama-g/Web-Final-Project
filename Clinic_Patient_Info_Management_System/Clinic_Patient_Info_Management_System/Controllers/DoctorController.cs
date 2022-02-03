@@ -1,13 +1,17 @@
 ﻿using Clinic_Patient_Info_Management_System.Models;
+using Clinic_Patient_Info_Management_System.Hubs;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.SignalR;
+using System.Diagnostics;
 
 namespace Clinic_Patient_Info_Management_System.Controllers
 {
+    [System.Web.Mvc.Authorize(Roles = "Doctor")]
     public class DoctorController : Controller
     {
         ApplicationDbContext context;
@@ -87,41 +91,43 @@ namespace Clinic_Patient_Info_Management_System.Controllers
         public ActionResult ViewPatient(int id)
         {
             var patient = context.Patients.Where(temp => temp.Id == id).FirstOrDefault();
-            var visit = context.Visitations.Where(data => data.PatientId == id).OrderBy(data => data.VisitDate);
-
+            var currentVisit = context.Visitations.Where(data => (data.PatientId == id) && (data.Status == "waiting"  || data.Status == "in progress")).FirstOrDefault();
+            var visit = context.Visitations.Where(data => (data.PatientId == id) && (data.Status == "Finished"));
+            visit.Reverse();
+            string userId = User.Identity.GetUserId();
+            var doctor = context.Employees.Where(data => data.UserID == userId).FirstOrDefault();
             DoctorViewModel model = new DoctorViewModel();
 
             model.FirstName = patient.FirstName;
             model.LastName = patient.LastName;
+            model.Age = CalculateAge(patient.BirthDate);
 
-            bool ctr = false;
-            foreach(var items in visit)
+            model.current.Id = currentVisit.Id;
+            model.current.Medicine = currentVisit.Medicine;
+            model.current.Perscription = currentVisit.Perscription;
+            model.current.ReasonForVisit = currentVisit.ReasonForVisit;
+            model.current.VisitDate = currentVisit.VisitDate;
+            model.current.Diagnosis = currentVisit.Diagnosis;
+
+            currentVisit.Status = "in progress";
+            currentVisit.DoctorName = doctor.FirstName + " " + doctor.LastName;
+
+            //var Hubcontext = GlobalHost.ConnectionManager.GetHubContext<ReceptinistHub>();
+            //Hubcontext.Clients.All.SendNotifications(text);
+
+            foreach (var items in visit)
             {
-                if (!ctr)
+                model.past.Add(new Records
                 {
-                    model.current.Id = items.Id;
-                    model.current.Medicine = items.Medicine;
-                    model.current.Perscription = items.Perscription;
-                    model.current.ReasonForVisit = items.ReasonForVisit;
-                    model.current.VisitDate = items.VisitDate;
-                    model.current.Diagnosis = items.Diagnosis;
-                    ctr = true;
-                }
-
-                else
-                {
-                    model.past.Add(new Records
-                    {
-                        Id = items.Id,
-                        Medicine = items.Medicine,
-                        Perscription = items.Perscription,
-                        ReasonForVisit = items.ReasonForVisit,
-                        VisitDate = items.VisitDate,
-                        Diagnosis = items.Diagnosis,
-                    });
-                }
+                    Id = items.Id,
+                    Medicine = items.Medicine,
+                    Perscription = items.Perscription,
+                    ReasonForVisit = items.ReasonForVisit,
+                    VisitDate = items.VisitDate,
+                    Diagnosis = items.Diagnosis,
+                });
             }
-
+            context.SaveChanges();
 
             return View(model);
         }

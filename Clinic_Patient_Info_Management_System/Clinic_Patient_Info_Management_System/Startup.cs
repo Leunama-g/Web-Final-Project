@@ -13,6 +13,7 @@ namespace Clinic_Patient_Info_Management_System
         {
             ConfigureAuth(app);
             createRolesandUsers();
+            app.MapSignalR();
         }
 
         private void createRolesandUsers()
